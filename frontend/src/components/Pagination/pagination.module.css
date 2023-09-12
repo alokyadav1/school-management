@@ -1,0 +1,41 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 2rem;
+  }
+  
+  .active {
+    background-color: blue;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .breakme {
+    color: white;
+  }
+  
+  .previous,
+  .next {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .pagination {
+      /* Adjust the styles for smaller screens */
+      /* For example, you can change the display to flex and set flex-direction to column */
+      display: flex;
+      flex-direction: row;
+      /* Add any other necessary styles */
+    }
+    .previous, .next{
+      display: block;
+    }
+  }
+  

@@ -1,0 +1,13 @@
+.active{
+    color:white;
+}
+.main{
+    height: calc(100vh);
+}
+li:has(.active){
+    background-color: rgba(73, 73, 207, 0.993);
+    color: white;
+}
+li:has(.active):hover{
+    background-color: rgba(73, 73, 207, 0.993);
+}

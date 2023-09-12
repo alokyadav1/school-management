@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+.player{
+    width: 500px;
+    height: 500px;
+}
+@media screen and (max-width:768px){
+    .signup{
+        flex-direction: column;
+    }
+    .player{
+        width: 350px;
+        height:350px;
+    }
+    .player-container{
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .signup-form{
+        width: 90%;
+        margin: 10px auto;
+    }
+
+}
