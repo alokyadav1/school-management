@@ -14,13 +14,13 @@ router.post("/register", registerAdmin);
 router.get("/getAdmin", requireAuth, getAdmin);
 
 //teacher
-router.post("/addTeacher",fileUpload.single("image") ,requireAuth, addTeacher);
+router.post("/addTeacher/",fileUpload.single("image") ,requireAuth, addTeacher);
 router.get("/getTeachers", requireAuth, getTeachers)
 router.delete("/removeTeacher/:id", requireAuth, removeTeacher)
 router.patch("/updateTeacher/:id", requireAuth, updateTeacher)
 
 //student
-router.post("/addStudent",fileUpload.single("image"),requireAuth, addStudent);
+router.post("/addStudent/",fileUpload.single("image"),requireAuth, addStudent);
 router.get("/getstudents", requireAuth, getStudents)
 router.delete("/removeStudent/:id", requireAuth, removeStudent)
 router.patch("/updateStudent/:id", requireAuth, updateStudent)

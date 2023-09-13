@@ -58,7 +58,7 @@ function Add({ addSuccess, role }) {
     const data = new FormData();
     data.append("first_name", formData.first_name);
     data.append("last_name", formData.last_name);
-    data.append("gender", formData.gender)
+    data.append("gender", formData.gender);
     data.append("email", formData.email);
     data.append("dob", formData.dob);
     data.append("mobile", formData.mobile);
@@ -89,7 +89,7 @@ function Add({ addSuccess, role }) {
     const data = new FormData();
     data.append("first_name", formData.first_name);
     data.append("last_name", formData?.last_name);
-    data.append("gender", formData.gender)
+    data.append("gender", formData.gender);
     data.append("email", formData.email);
     data.append("dob", formData?.dob);
     data.append("mobile", formData?.mobile);
@@ -149,43 +149,45 @@ function Add({ addSuccess, role }) {
               </div>
               <p>file - {avatar?.name}</p>
             </div>
-            <div className="md:w-full mx-auto">
-              <label
-                htmlFor="first_name"
-                className="block text-sm font-medium leading-6 text-start text-black"
-              >
-                First Name <span className="text-sm text-red-700">*</span>
-              </label>
-              <input
-                id="first_name"
-                name="first_name"
-                type="text"
-                placeholder="first name"
-                required
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
-                onChange={(e) =>
-                  setFormData({ ...formData, first_name: e.target.value })
-                }
-              />
-            </div>
-            <div className="md:w-full mx-auto">
-              <label
-                htmlFor="last_name"
-                className="block text-sm font-medium leading-6 text-start text-black"
-              >
-                Last Name <span className="text-sm text-red-700">*</span>
-              </label>
-              <input
-                id="last_name"
-                name="last_name"
-                type="text"
-                placeholder="last name"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
-                required
-                onChange={(e) =>
-                  setFormData({ ...formData, last_name: e.target.value })
-                }
-              />
+            <div className="flex gap-x-2 w-full">
+              <div className="flex-1">
+                <label
+                  htmlFor="first_name"
+                  className="block text-sm font-medium leading-6 text-start text-black"
+                >
+                  First Name <span className="text-sm text-red-700">*</span>
+                </label>
+                <input
+                  id="first_name"
+                  name="first_name"
+                  type="text"
+                  placeholder="first name"
+                  required
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
+                  onChange={(e) =>
+                    setFormData({ ...formData, first_name: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex-1">
+                <label
+                  htmlFor="last_name"
+                  className="block text-sm font-medium leading-6 text-start text-black"
+                >
+                  Last Name <span className="text-sm text-red-700">*</span>
+                </label>
+                <input
+                  id="last_name"
+                  name="last_name"
+                  type="text"
+                  placeholder="last name"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
+                  required
+                  onChange={(e) =>
+                    setFormData({ ...formData, last_name: e.target.value })
+                  }
+                />
+              </div>
             </div>
             <div className="md:w-full mx-auto">
               <label className="block text-sm font-medium leading-6 text-start text-black">

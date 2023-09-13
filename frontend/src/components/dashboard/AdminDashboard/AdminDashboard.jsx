@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useReducer, useEffect } from "react"
 import UserContext from "../../../context/UserContext";
@@ -25,9 +26,9 @@ function AdminDashboard() {
             });
             dispatchData({
                 type: "SET_STUDENTS",
-                payload: studentData.data.students
+                payload: studentData.data.students[0]?.studentInfo
             })
-            console.log("student data", studentData.data.students);
+            console.log("student data", studentData.data.students[0]?.studentInfo);
 
             //fetch teacher data
             const teacherData = await axios.get("/admin/getTeachers", {
@@ -37,7 +38,7 @@ function AdminDashboard() {
             });
             dispatchData({
                 type: "SET_TEACHERS",
-                payload: teacherData.data.teachers
+                payload: teacherData.data.teachers[0]?.teacherInfo
             })
 
             //fetch standard data
@@ -60,7 +61,7 @@ function AdminDashboard() {
                     <Header />
                 </div> */}
                 <div className="flex flex-wrap">
-                    <div className="md:w-40 px-2 rounded-lg shadow-lg bg-slate-200 m-1">
+                    <div className="md:w-fit md:min-w-40 px-2 rounded-lg shadow-lg bg-slate-200 m-1">
                         <SideBar />
                     </div>
                     <div className="main flex-1 overflow-auto  rounded-lg ms-1">
@@ -72,4 +73,5 @@ function AdminDashboard() {
     );
 }
 
-export default AdminDashboard;
+// export default AdminDashboard;
+export default React.memo(AdminDashboard)

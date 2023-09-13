@@ -33,15 +33,20 @@ function AdminReducer(data,action) {
                 teachers: data.teachers.filter((teacher) => teacher._id !== action.payload.id)
             }
         case "UPDATE_STUDENT":
-            const updatedStudent = data.students.filter(student => {
-                if (student._id === action.payload.id) {
+            console.log("action.payload",action.payload);
+            console.log("data",data.students);
+            const updateStudent = data.students.map(student => {
+                if (student._id == action.payload.id) {
+                    console.log(true);
+                    console.log("student payload", action.payload.updatedStudent);
                     return action.payload.updatedStudent
                 }
-                return student;
+                else return student;
             })
+            console.log("updatedStudent",updateStudent);
             return {
                 ...data,
-                students: updatedStudent
+                students: updateStudent
             }
         case "UPDATE_TEACHER":
             return {

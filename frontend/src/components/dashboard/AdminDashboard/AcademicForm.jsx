@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "../../../Axios/axios.js";
+import AdminContext from "../../../context/AdminContext.js";
 
 function AcademicForm({ id, addSuccess }) {
+  const {dispatchData}  = useContext(AdminContext)
   const [marks, setMarks] = useState([]);
   const [mark, setMark] = useState({});
   const [exam, setExam] = useState(null);
@@ -52,6 +54,13 @@ function AcademicForm({ id, addSuccess }) {
         }
       );
       console.log(res);
+      dispatchData({
+        type: "UPDATE_STUDENT",
+        payload:{
+          id,
+          updatedStudent:res.data.updatedStudent
+        },
+      })
       addSuccess();
     } catch (error) {
       console.log(error);

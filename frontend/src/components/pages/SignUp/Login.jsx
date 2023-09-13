@@ -37,7 +37,7 @@ function Login() {
                             role: "Admin",
                         }
                     })
-                    navigate("/admin")
+                    navigate("/admin/")
                     break;
                 case "teacher":
                     const teacherData = await axios.post('/admin/login', user);

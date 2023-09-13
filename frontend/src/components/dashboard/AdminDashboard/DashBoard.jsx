@@ -10,19 +10,19 @@ function DashBoard() {
     {
       id: 1,
       title: "Total Students",
-      count: data?.students?.length,
+      count: data?.students?.length || 0,
       color: "bg-blue-500",
     },
     {
       id: 2,
       title: "Total Teachers",
-      count: data?.teachers?.length,
+      count: data?.teachers?.length || 0,
       color: "bg-green-500",
     },
     {
       id: 3,
       title: "Total Standards",
-      count: standard?.length,
+      count: standard?.length || 0,
       color: "bg-yellow-500",
     },
   ];

@@ -97,7 +97,7 @@ function ProfileCard({ role, data }) {
   return (
     <>
       <ToastContainer />
-      <div className=" bg-gray-100 px-5 py-2 rounded-xl text-center flex justify-between w-full">
+      <div className=" bg-gray-100 px-5 py-2 rounded-xl flex justify-between w-full">
         <div
           onClick={(e) => viewDetail(data)}
           className=" cursor-pointer flex gap-x-2 justify-start items-center"
@@ -107,9 +107,12 @@ function ProfileCard({ role, data }) {
             alt=""
             className="rounded-full bg-white p-1 w-12 h-12"
           />
-          <p>
-            {data.first_name} {data.last_name}
-          </p>
+          <div>
+            <p>
+              {data.first_name} {data.last_name}
+            </p>
+            <span className="text-slate-500 text-sm italic">{data._id}</span>
+          </div>
           {role === "Student" && (
             <span className="bg-blue-700 rounded-lg text-sm px-2 text-white font-bold py-0 pt-1">
               {data?.standard} <sup>th</sup>

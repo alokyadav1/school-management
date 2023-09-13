@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.mobile{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000;
+    opacity: 0.5;
+    font-family: 'Courier New', Courier, monospace;
+}
+@media screen and (max-width:900px) {
+    #root{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+}

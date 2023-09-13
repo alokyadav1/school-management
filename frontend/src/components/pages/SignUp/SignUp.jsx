@@ -12,7 +12,7 @@ function SignUp() {
     return (
         <>
             {
-                localStorage.getItem("token") ? <Navigate to={`/${dashboard}`} /> : null
+                localStorage.getItem("token") ? <Navigate to={`/${dashboard}/`} /> : null
             }
             <div>
                 <div>

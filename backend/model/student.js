@@ -1,54 +1,65 @@
 import mongoose from "mongoose";
 const studentSchema = mongoose.Schema({
-    password:{
+  adminId: {
+    type: String,
+    required: true,
+  },
+  studentInfo: [
+    {
+      password: {
         type: String,
         required: true,
-    },
-    first_name:{
+      },
+      first_name: {
         type: String,
         required: true,
-    },
-    last_name:{
+      },
+      last_name: {
         type: String,
         required: false,
-    },
-    profile_pic:{
+      },
+      profile_pic: {
         type: String,
         required: false,
-    },
-    gender:{
+      },
+      gender: {
         type: String,
         required: false,
-    },
-    dob:{
+      },
+      dob: {
         type: String,
         required: false,
-    },
-    email:{
+      },
+      email: {
         type: String,
         required: true,
-    },
-    mobile:{
+      },
+      mobile: {
         type: Number,
         required: false,
-    },
-    standard:{
+      },
+      standard: {
         type: Number,
         required: true,
-    },
-    remarks:{
+      },
+      remarks: {
         type: String,
         required: false,
+      },
+      academic_details: [
+        {
+          exam_name: String,
+          marks: [
+            {
+              subject: String,
+              marks_obtained: Number,
+              total_marks: Number,
+            },
+          ],
+        },
+      ],
     },
-    academic_details:[{
-        exam_name:String,
-        marks:[{
-            subject:String,
-            marks_obtained:Number,
-            total_marks:Number,
-        }]
-    }]
-
-})
-const studentModel = mongoose.model("Student", studentSchema)
+  ],
+});
+const studentModel = mongoose.model("Student", studentSchema);
 export default studentModel;
