@@ -55,12 +55,10 @@ const addStudent = async (req, res) => {
       });
       const newStudent = await admin.save();
       const token = createToken(newStudent._id);
-      res
-        .status(200)
-        .json({
-          student: newStudent.studentInfo[newStudent.studentInfo.length - 1],
-          token,
-        });
+      res.status(200).json({
+        student: newStudent.studentInfo[newStudent.studentInfo.length - 1],
+        token,
+      });
     } else {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(student.password, salt);
@@ -85,7 +83,13 @@ const addStudent = async (req, res) => {
       });
       const savedStudent = await newStudent.save();
       const token = createToken(savedStudent._id);
-      res.status(200).json({ student: savedStudent, token });
+      res
+        .status(200)
+        .json({
+          student:
+            savedStudent.studentInfo[savedStudent.studentInfo.length - 1],
+          token,
+        });
     }
   } catch (error) {
     console.log(error);
@@ -197,14 +201,17 @@ const addAcademicDetails = async (req, res) => {
         },
       },
       {
-        new:true
+        new: true,
       }
-    )
+    );
     const updated = await studentModel.findOne({ "studentInfo._id": id });
     const updatedStudent = updated.studentInfo.find((s) => s._id == id);
     res
       .status(200)
-      .json({ updatedStudent, message: "Student academic details added successfully" });
+      .json({
+        updatedStudent,
+        message: "Student academic details added successfully",
+      });
   } catch (error) {
     res.status(500).json({ error, message: error.message });
   }

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 import axios from "../../../Axios/axios.js";
 import "../../../assets/styles/signup.css";
-function Login() {
+function Register() {
   const navigate = useNavigate();
   const { dispatchUser } = useContext(UserContext);
   const [message, setMessage] = useState("");
@@ -24,7 +24,7 @@ function Login() {
     try {
       switch (userRole) {
         case "admin":
-          const adminData = await axios.post("/admin/login", user);
+          const adminData = await axios.post("/admin/register", user);
           setMessage(adminData.data.message);
           if (adminData.data.admin.verified) {
             localStorage.setItem("userRole", "Admin");
@@ -41,7 +41,7 @@ function Login() {
             });
             navigate("/admin/");
           } else {
-            navigate("/notVerified",{state:{email}});
+            navigate("/notVerified", {state:{email}});
           }
           break;
         case "teacher":
@@ -83,16 +83,14 @@ function Login() {
   };
   return (
     <div>
-      {error && (
-        <div className="p-2">
-          <p className="text-center text-red-900 bg-slate-200 p-2 rounded-md shadow-sm">
-            {error}
-          </p>
-        </div>
-      )}
+      {error && <div className="p-2">
+        <p className="text-center text-red-900 bg-slate-200 p-2 rounded-md shadow-sm">
+          {error}
+        </p>
+      </div>}
       <form className="login space-y-6 mx-auto" onSubmit={handleSubmit}>
         <div className="md:w-4/5 mx-auto pt-5">
-          <label htmlFor="role">login as : </label>
+          <label htmlFor="role">Register as : </label>
           <select
             name="role"
             id="role"
@@ -130,21 +128,13 @@ function Login() {
             >
               Password
             </label>
-            <div className="text-sm">
-              <Link
-                to="/forgotPassword"
-                className="font-semibold text-indigo-600 hover:text-indigo-500"
-              >
-                Forgot password?
-              </Link>
-            </div>
           </div>
           <div className="mt-2">
             <input
               id="password"
               name="password"
               type="password"
-              autoComplete="current-password"
+              autoComplete="off"
               onBlur={(e) => setPassword(e.target.value)}
               required
               className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -158,7 +148,7 @@ function Login() {
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
             disabled={loading}
           >
-            Sign in
+            Register
           </button>
         </div>
       </form>
@@ -166,4 +156,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

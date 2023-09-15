@@ -4,10 +4,18 @@ import { useState } from "react";
 import styles from "./modal.module.css";
 import {GrClose} from "react-icons/gr";
 function CustomModal({modalTitle,name,standard, children, handleRequestClose}) {
+
+  const handleModalClick = () => {
+    handleRequestClose()
+  }
+
+  const handleModalContentClick = (e) => {
+    e.stopPropagation();
+  }
   return (
     <>
-      <div className={`${styles.overlay}`}>
-        <div className={` ${styles.modal} relative `}>
+      <div className={`${styles.overlay}`} onClick={handleModalClick}>
+        <div className={` ${styles.modal} relative `} onClick={handleModalContentClick}>
           <header className="">
             <h1 className="text-2xl w-fit mx-auto">{modalTitle?modalTitle:"Title"}</h1>
             {name && <div className="flex gap-2 items-center pb-1 text-center w-fit mx-auto">

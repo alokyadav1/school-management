@@ -6,6 +6,7 @@ import StudentStandard from "../Charts/StudentStandard";
 import GenderDistribution from "../Charts/GenderDistribution";
 function DashBoard() {
   const { data, standard } = useContext(AdminContext);
+  
   const dashboardData = [
     {
       id: 1,
@@ -26,6 +27,7 @@ function DashBoard() {
       color: "bg-yellow-500",
     },
   ];
+  
   return (
     <div>
       <div className="flex gap-x-10 flex-wrap justify-start p-2 mb-7 flex-auto">

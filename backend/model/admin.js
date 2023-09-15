@@ -7,7 +7,11 @@ const adminSchema = mongoose.Schema({
     email:{
         type: String,
         required: true,
-    }
+    },
+    verified:{
+        type: Boolean,
+        default: false,
+    },
 })
 
 const adminModel = mongoose.model("Admin", adminSchema)

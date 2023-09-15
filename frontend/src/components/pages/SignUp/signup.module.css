@@ -1,0 +1,24 @@
+.active{
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .active:hover {
+    background-color: #4CAF50;
+  }
+  
+  .active:active {
+    background-color: #4CAF50;
+  }
+  
+  .active:focus {
+    background-color: #4CAF50;
+  }
+  
+  .active:visited {
+    background-color: #4CAF50;
+  }
+  
+  .active:link {
+    background-color: #4CAF50;
+}

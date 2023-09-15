@@ -16,9 +16,9 @@
 }
 @media screen and (max-width:900px) {
     #root{
-        display: none;
+        display: none !important;
     }
     .mobile{
-        display: block;
+        display: block !important;
     }
 }

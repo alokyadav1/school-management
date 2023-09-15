@@ -50,12 +50,10 @@ const addTeacher = async (req, res) => {
       });
       const newTeacher = await admin.save();
       const token = createToken(newTeacher._id);
-      res
-        .status(200)
-        .json({
-          teacher: newTeacher.teacherInfo[newTeacher.teacherInfo.length - 1],
-          token,
-        });
+      res.status(200).json({
+        teacher: newTeacher.teacherInfo[newTeacher.teacherInfo.length - 1],
+        token,
+      });
     } else {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(teacher.password, salt);
@@ -80,7 +78,13 @@ const addTeacher = async (req, res) => {
       });
       const savedTeacher = await newteacher.save();
       const token = createToken(savedTeacher._id);
-      res.status(200).json({ teacher: savedTeacher, token });
+      res
+        .status(200)
+        .json({
+          teacher:
+            savedTeacher.teacherInfo[savedTeacher.teacherInfo.length - 1],
+          token,
+        });
     }
   } catch (error) {
     console.log(error);

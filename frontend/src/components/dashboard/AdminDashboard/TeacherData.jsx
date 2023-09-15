@@ -153,7 +153,7 @@ function TeacherData() {
         </header>
         <hr className="my-2 border-gray-900" />
         <div>
-          <Pagination data={teacherData} role="Teacher" />
+          <Pagination data={data.teachers} role="Teacher" />
         </div>
 
         {/* <Modal

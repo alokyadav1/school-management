@@ -11,6 +11,7 @@ import AdminContext from "../../../context/AdminContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function ProfileCard({ role, data }) {
+  console.log(`testing ${role} `, data);
   const navigate = useNavigate();
   const { dispatchData } = useContext(AdminContext);
   const [error, setError] = useState("");

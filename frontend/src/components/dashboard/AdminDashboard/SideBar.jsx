@@ -5,6 +5,7 @@ import UserContext from "../../../context/UserContext";
 import {AiOutlineDashboard} from "react-icons/ai"
 import {PiStudentFill} from "react-icons/pi"
 import {FaChalkboardTeacher} from "react-icons/fa"
+import {FiLogOut} from "react-icons/fi"
 import "./admin.css";
 
 function SideBar() {
@@ -50,9 +51,10 @@ function SideBar() {
       <div className="py-2 w-fit mx-auto">
         <button
           onClick={handleLogout}
-          className="bg-blue-700 rounded-md p-2 text-white font-bold"
+          className="bg-blue-700 rounded-md p-2 text-white font-bold flex items-center gap-x-2"
         >
-          Logout
+          <span>Logout</span>
+          <FiLogOut/>
         </button>
       </div>
     </>

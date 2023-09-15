@@ -6,6 +6,11 @@ import './App.css'
 
 import axios from "./Axios/axios.js"
 // import Dashboard from './components/dashboard/DashBoard'
+import NotVerified from './components/pages/verify/NotVerified'
+import ForgotPassword from './components/pages/ForgotPassword/ForgotPassword'
+import SetPassword from './components/pages/ForgotPassword/SetPassword'
+
+import VerifyEmail from './components/pages/verify/Verify'
 import DashBoard from './components/dashboard/AdminDashboard/DashBoard'
 import AdminDashboard from './components/dashboard/AdminDashboard/AdminDashboard'
 import ViewDetail from './components/dashboard/AdminDashboard/ViewDetail'
@@ -90,6 +95,12 @@ function App() {
           </Route>
 
           <Route path='/login' element={< SignUp />} />
+          <Route path='/verify/:token' element={<VerifyEmail />} />
+          <Route path='/notVerified' element={<NotVerified />} />
+          <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path='/setPassword/:token' element={<SetPassword />} />
+
+          <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

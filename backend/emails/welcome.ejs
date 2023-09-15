@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Welcome to Our Website</title>
+    <style>
+        /* Add your email styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .btn-container{
+            width: fit-content;
+            margin: 0 auto;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff !important;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        /* Social media icons style */
+        .social-icons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        .social-icons a:hover {
+            color: #0056b3;
+        }
+
+        .email{
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a{
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Our Website!</h1>
+        </div>
+        <div class="content">
+            <p>Dear <%= email %>,</p>
+            <p>Thank you for registering with us. We're excited to have you as a part of our community!</p>
+            <p>Please complete the verification process to get started. This helps us ensure the security of your account.</p>
+            <p class="btn-container">
+                <a class="button" href="<%= link %>">Verify Your Account</a>
+            </p>
+            <p>If you have any questions or need assistance, you can drop your queries on this email <a href="mail:alok.yadav8879@gmail.com" class="email">alok.yadav8879@gmail.com</a>.</p>
+            <p>Thank you again for choosing us!</p>
+            <p>Made by ALOK YADAV with love</p> 
+
+           
+        </div>
+        <div class="footer">
+             <!-- Social media icons -->
+             <div class="social-icons">
+                <a href="https://www.instagram.com/alok_yadav88/">Instagram</a>
+                <a href="https://github.com/alokyadav1">GitHub</a>
+                <a href="https://www.linkedin.com/in/alok-yadav-509ba8187">LinkedIn</a>
+            </div>
+            © 2023 Your Company Name. All rights reserved.
+            <p>Made by ALOK YADAV with love</p>
+            
+        </div>
+    </div>
+</body>
+</html>

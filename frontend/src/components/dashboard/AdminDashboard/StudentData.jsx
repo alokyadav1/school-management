@@ -245,7 +245,7 @@ function StudentData() {
           )}
         </div>
         <div>
-          <Pagination data={studentData} role="Student" filter={selectedDepartment} />
+          <Pagination data={data?.students} role="Student"  />
         </div>
       </div>
       <div>
