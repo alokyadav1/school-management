@@ -78,13 +78,10 @@ const addTeacher = async (req, res) => {
       });
       const savedTeacher = await newteacher.save();
       const token = createToken(savedTeacher._id);
-      res
-        .status(200)
-        .json({
-          teacher:
-            savedTeacher.teacherInfo[savedTeacher.teacherInfo.length - 1],
-          token,
-        });
+      res.status(200).json({
+        teacher: savedTeacher.teacherInfo[savedTeacher.teacherInfo.length - 1],
+        token,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -123,8 +120,9 @@ const removeTeacher = async (req, res) => {
 const updateTeacher = async (req, res) => {
   const teacherData = { ...req.body };
   const id = req.params.id;
+  console.log(teacherData, id);
   try {
-    const teacher = await teacherModel.findById(id);
+    const teacher = await teacherModel.findOne({"teacherInfo._id": id});
     if (!teacher) {
       return res.status(400).json({ message: "teacher not found" });
     }
@@ -133,40 +131,28 @@ const updateTeacher = async (req, res) => {
       const hashedPassword = await bcrypt.hash(teacherData.password, salt);
       teacherData.password = hashedPassword;
     }
-    const updatedTeacher = await teacherModel.updateOne(
+    const d = await teacherModel.updateOne(
       {
         "teacherInfo._id": id,
       },
       {
         $set: {
-          "teacherInfo.$.first_name":
-            teacherData.first_name || "teacher.teacherInfo.$.first_name",
-          "teacherInfo.$.last_name":
-            teacherData.last_name || "teacher.teacherInfo.$.last_name",
-          "teacherInfo.$.dob": teacherData.dob || "teacher.teacherInfo.$.dob",
-          "teacherInfo.$.email":
-            teacherData.email || "teacher.teacherInfo.$.email",
-          "teacherInfo.$.mobile":
-            teacherData.mobile || "teacher.teacherInfo.$.mobile",
-          "teacherInfo.$.password":
-            teacherData.password || "teacher.teacherInfo.$.password",
+          "teacherInfo.$.first_name": teacherData.first_name,
+          "teacherInfo.$.last_name": teacherData.last_name,
+          "teacherInfo.$.gender":teacherData.gender,
+          "teacherInfo.$.profile_pic": teacherData.profile_pic,
+          "teacherInfo.$.dob": teacherData.dob,
+          "teacherInfo.$.mobile": teacherData.mobile,
+          "teacherInfo.$.password": teacherData.password,
+
         },
       },
       {
         new: true,
       }
     );
-    // teacher.first_name = teacherData.first_name || teacher.first_name;
-    // teacher.last_name = teacherData.last_name || teacher.last_name;
-    // teacher.dob = teacherData.dob || teacher.dob;
-    // teacher.email = teacherData.email || teacher.email;
-    // teacher.mobile = teacherData.mobile || teacher.mobile;
-    // if (teacherData.password) {
-    //   const salt = await bcrypt.genSalt(10);
-    //   const hashedPassword = await bcrypt.hash(teacherData.password, salt);
-    //   teacher.password = hashedPassword;
-    // }
-    // const updatedTeacher = await teacher.save();
+    const updated = await teacherModel.findOne({ "teacherInfo._id": id });
+    const updatedTeacher = updated.teacherInfo.find((s) => s._id == id);
     res
       .status(200)
       .json({ updatedTeacher, message: "Teacher updated successfully" });

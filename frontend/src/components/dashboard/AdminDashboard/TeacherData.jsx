@@ -132,12 +132,15 @@ function TeacherData() {
       <div className="relative">
         <header className="p-1 flex items-center justify-evenly">
           <h1 className="text-2xl font-bold text-center">Teacher Data</h1>
-          <div>
-            <input
-              type="text"
-              placeholder="search"
-              className="border-2 border-black rounded-full px-4 py-1"
-            />
+          <div className=" w-1/2">
+            <div className="relative m-auto flex justify-center">
+              <input
+                type="text"
+                className="py-2 px-4 w-2/3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition duration-300 m-auto"
+                placeholder="Search..."
+              />
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+            </div>
           </div>
           <div className="flex items-stretch">
             <button
@@ -151,7 +154,7 @@ function TeacherData() {
             </div>
           </div>
         </header>
-        <hr className="my-2 border-gray-900" />
+        <hr className="my-2" />
         <div>
           <Pagination data={data.teachers} role="Teacher" />
         </div>

@@ -49,18 +49,18 @@ const registerAdmin = async (req, res) => {
       expiresIn: "1d",
     });
     const link = `http://localhost:5173/verify/${verifyToken}`;
-    await sendMail({
-      to: email,
-      subject: "Verify your email",
-      link,
-      mailType: "welcome",
-    });
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newAdmin = new adminModel({ email, password: hashedPassword });
     const user = await newAdmin.save();
     // await sendMail({ to: email, subject: "Verify your email", link });
+    await sendMail({
+      to: email,
+      subject: "Verify your email",
+      link,
+      mailType: "welcome",
+    });
     const token = createToken(user._id);
     res.status(200).json({
       admin: user,
@@ -117,15 +117,14 @@ const sendEmail = async (req, res) => {
     expiresIn: "1d",
   });
   const link = `http://localhost:5173/verify/${verifyToken}`;
-  await sendMail({
-    to: email,
-    subject: "Verify your email",
-    link,
-    mailType: "welcome",
-  });
-
   try {
     // await sendMail({ to: email, subject: "Verify your email", html });
+    await sendMail({
+      to: email,
+      subject: "Verify your email",
+      link,
+      mailType: "welcome",
+    });
     res.status(200).json({ message: "Email sent" });
   } catch (error) {
     console.log(error.message);
@@ -145,14 +144,15 @@ const forgotPassword = async (req, res) => {
     expiresIn: "1d",
   });
   const link = `http://localhost:5173/verify/${token}`;
-  await sendMail({
-    to: email,
-    subject: "Reset Password",
-    link,
-    mailType: "reset",
-  });
+
   try {
     // await sendMail({to: email, subject: "Reset your password", html});
+    await sendMail({
+      to: email,
+      subject: "Reset Password",
+      link,
+      mailType: "reset",
+    });
     res.status(200).json({ message: "Email sent" });
   } catch (error) {
     console.log(error.message);

@@ -7,11 +7,13 @@ function AdminReducer(data, action) {
         ...data,
         students: action.payload,
       };
+      
     case "SET_TEACHERS":
       return {
         ...data,
         teachers: action.payload,
       };
+
     case "ADD_STUDENT":
       if (data.students.length == 0) {
         return {
@@ -24,6 +26,7 @@ function AdminReducer(data, action) {
           students: [...data.students, action.payload], // Use the spread operator to add to the existing array
         };
       }
+
     case "ADD_TEACHER":
       if (data.teachers.length == 0) {
         return {
@@ -44,6 +47,7 @@ function AdminReducer(data, action) {
           (student) => student._id !== action.payload.id
         ),
       };
+
     case "DELETE_TEACHER":
       return {
         ...data,
@@ -51,6 +55,7 @@ function AdminReducer(data, action) {
           (teacher) => teacher._id !== action.payload.id
         ),
       };
+
     case "UPDATE_STUDENT":
       console.log("action.payload", action.payload);
       console.log("data", data.students);
@@ -66,11 +71,20 @@ function AdminReducer(data, action) {
         ...data,
         students: updateStudent,
       };
+
     case "UPDATE_TEACHER":
+      const updateTeacher = data.teachers.map((teacher) => {
+        if (teacher._id == action.payload.id) {
+          console.log(true);
+          console.log("teacher payload", action.payload.updatedTeacher);
+          return action.payload.updatedTeacher;
+        } else return teacher;
+      });
       return {
         ...data,
-        teachers: action.payload,
+        teachers: updateTeacher,
       };
+
     default:
       return data;
   }

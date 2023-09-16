@@ -82,7 +82,7 @@ function ProfileCard({ role, data }) {
 
   // view detail
   const viewDetail = (data) => {
-    navigate(`viewdetail/${data._id}`, { state: { data } });
+    navigate(`viewdetail/${data._id}`, { state: { data,role } });
   };
 
   //edit detail
@@ -139,14 +139,14 @@ function ProfileCard({ role, data }) {
               <AiFillEdit /> Edit
             </span>
           </button>
-          <button
+          {role == "Student" && <button
             className="bg-blue-700 text-white rounded-lg px-1"
             onClick={(e) => performanceReport(data)}
           >
             <span className="flex items-center gap-x-2">
               <BiSolidReport /> Report
             </span>
-          </button>
+          </button>}
         </div>
       </div>
       <div>

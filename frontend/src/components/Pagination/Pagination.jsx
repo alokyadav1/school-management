@@ -7,13 +7,13 @@ import styles from "./pagination.module.css"
 import {FcPrevious, FcNext} from "react-icons/fc"
 function Pagination({data,role,filter=null}) {
 
-  // let filteredData = []
-  // if(filter){
-  //   filteredData = data?.filter((item) => filter?.includes(item.standard+"th"));
-  // } else {
-  //   filteredData = data
-  // }
-  const filteredData = data
+  let filteredData = []
+  if(filter){
+    filteredData = data?.filter((item) => filter?.includes(item.standard+"th"));
+  } else {
+    filteredData = data
+  }
+  
   const [currentPage, setCurrentPage] = useState(0)
   const PER_PAGE = 10;
   const OFFSET = currentPage * PER_PAGE;

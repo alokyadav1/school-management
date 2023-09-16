@@ -83,13 +83,10 @@ const addStudent = async (req, res) => {
       });
       const savedStudent = await newStudent.save();
       const token = createToken(savedStudent._id);
-      res
-        .status(200)
-        .json({
-          student:
-            savedStudent.studentInfo[savedStudent.studentInfo.length - 1],
-          token,
-        });
+      res.status(200).json({
+        student: savedStudent.studentInfo[savedStudent.studentInfo.length - 1],
+        token,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -131,7 +128,6 @@ const updateStudent = async (req, res) => {
   const adminID = req.user.id;
   try {
     const student = await studentModel.findOne({ "studentInfo._id": id });
-    console.log("student", student);
     if (!student) {
       return res.status(400).json({ message: "Student not found" });
     }
@@ -140,6 +136,8 @@ const updateStudent = async (req, res) => {
       const hashedPassword = await bcrypt.hash(studentData.password, salt);
       studentData.password = hashedPassword;
     }
+    // upload profile pic to cloudinary
+    const result = await uploadToCloudinary(req.file, "student");
     const d = await studentModel.updateOne(
       {
         "studentInfo._id": id,
@@ -149,6 +147,7 @@ const updateStudent = async (req, res) => {
           "studentInfo.$.first_name": studentData.first_name,
           "studentInfo.$.last_name": studentData.last_name,
           "studentInfo.$.gender": studentData.gender,
+          "studentInfo.$.profile_pic": result?.secure_url,
           "studentInfo.$.dob": studentData.dob,
           "studentInfo.$.mobile": Number(studentData.mobile) || undefined,
           "studentInfo.$.password": studentData.password,
@@ -158,18 +157,7 @@ const updateStudent = async (req, res) => {
         new: true,
       }
     );
-    // student.studentInfo.first_name = "alok" || student.studentInfo.first_name;
-    // student.studentInfo.last_name = studentData.last_name || student.studentInfo.last_name;
-    // student.studentInfo.gender = studentData.gender || student.studentInfo.gender;
-    // student.studentInfo.dob = studentData.dob || student.studentInfo.dob;
-    // student.studentInfo.email = studentData.email || student.studentInfo.email;
-    // student.studentInfo.mobile = studentData.mobile || student.studentInfo.mobile;
-    // if (studentData.password) {
-    //   const salt = await bcrypt.genSalt(10);
-    //   const hashedPassword = await bcrypt.hash(studentData.password, salt);
-    //   student.password = hashedPassword;
-    // }
-    // const updatedStudent = await student.save();
+
     const updated = await studentModel.findOne({ "studentInfo._id": id });
     const updatedStudent = updated.studentInfo.find((s) => s._id == id);
     res
@@ -206,12 +194,10 @@ const addAcademicDetails = async (req, res) => {
     );
     const updated = await studentModel.findOne({ "studentInfo._id": id });
     const updatedStudent = updated.studentInfo.find((s) => s._id == id);
-    res
-      .status(200)
-      .json({
-        updatedStudent,
-        message: "Student academic details added successfully",
-      });
+    res.status(200).json({
+      updatedStudent,
+      message: "Student academic details added successfully",
+    });
   } catch (error) {
     res.status(500).json({ error, message: error.message });
   }

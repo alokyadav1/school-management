@@ -34,7 +34,7 @@ function EditDetail() {
   const month = y + "-" + formattedMonth;
 
   const notify = () =>
-    toast.success("Student Updated Successfully!!", {
+    toast.success(`${role} Updated Successfully!!`, {
       position: "top-center",
     });
 
@@ -107,7 +107,34 @@ function EditDetail() {
     }
   };
 
-  const updateTeacher = () => {};
+  const updateTeacher = async() => {
+    setError("");
+    try {
+      const res = await axios.patch(
+        `/admin/updateTeacher/${data._id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      dispatchData({
+        type: "UPDATE_TEACHER",
+        payload: {
+          id: data._id,
+          updatedTeacher: res.data.updatedTeacher,
+        },
+      });
+
+      setSuccess("Teacher Updated Successfully!!");
+      notify();
+    } catch (error) {
+      setError(error.response.data.message);
+      console.log(error);
+    }
+  };
 
   return (
     <div>

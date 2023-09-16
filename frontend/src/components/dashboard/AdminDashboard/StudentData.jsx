@@ -121,17 +121,17 @@ function StudentData() {
     "10th",
   ]);
   // let selectedDepartment = ["MCA", "BCA", "BBA", "MBA"];
-  const department = ["5th", "6th", "7th", "8th","9th","10th"];
+  const department = ["5th", "6th", "7th", "8th", "9th", "10th"];
 
   const notify = () =>
     toast.success(`Student Added Successfully`, {
       position: "top-center",
     });
 
-    const addSuccess = () => {
-      notify();
-      closeModal();
-    }
+  const addSuccess = () => {
+    notify();
+    closeModal();
+  };
   const openModal = () => {
     setShowModal(true);
   };
@@ -166,14 +166,17 @@ function StudentData() {
       <div className="relative">
         <header className="p-2 flex items-center justify-evenly sticky top-0 bg-white backdrop-blur-lg">
           <h1 className="text-2xl font-bold text-center">Student Data</h1>
-          <div>
-            <input
-              type="text"
-              placeholder="search"
-              className="border-2 border-black rounded-full px-4 py-1"
-            />
-            {/* <CustomModal/> */}
+          <div className=" w-1/2 ">
+            <div className="relative m-auto  flex justify-center">
+              <input
+                type="text"
+                className="py-2 px-4 w-2/3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition duration-300 m-auto"
+                placeholder="Search..."
+              />
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+            </div>
           </div>
+
           <div className="flex items-stretch">
             <button
               className="bg-blue-500 text-white rounded-s-lg p-2 hover:bg-blue-700 shadow-lg"
@@ -245,13 +248,13 @@ function StudentData() {
           )}
         </div>
         <div>
-          <Pagination data={data?.students} role="Student"  />
+          <Pagination data={data?.students} role="Student" filter={selectedDepartment} />
         </div>
       </div>
       <div>
         {showModal && (
           <CustomModal handleRequestClose={closeModal} modalTitle="Add Student">
-            <Add role="Student" addSuccess={addSuccess}/>
+            <Add role="Student" addSuccess={addSuccess} />
           </CustomModal>
         )}
       </div>
