@@ -26,6 +26,8 @@ import StudentDashboard from './components/dashboard/StudentDashboard'
 import SignUp from './components/pages/SignUp/SignUp.jsx'
 import UserContext from './context/UserContext'
 import UserReducer from './reducer/UserReducer'
+
+
 function App() {
 
   const [currentUser, dispatchUser] = useReducer(UserReducer, {});
