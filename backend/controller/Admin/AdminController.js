@@ -38,7 +38,6 @@ const loginAdmin = async (req, res) => {
 //register admin
 const registerAdmin = async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
   try {
     //check if user already exists
     const exists = await adminModel.findOne({ email });
@@ -48,7 +47,7 @@ const registerAdmin = async (req, res) => {
     const verifyToken = jwt.sign({ email: email }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    const link = `http://localhost:5173/verify/${verifyToken}`;
+    const link = `${process.env.FRONTEND_URL}/verify/${verifyToken}`;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -74,11 +73,9 @@ const registerAdmin = async (req, res) => {
 
 //get admin info
 const getAdmin = async (req, res) => {
-  console.log(req.user.id);
   const id = req.user.id;
   try {
     const user = await adminModel.find({ _id: id });
-    console.log("Admin: ", user);
     res.status(200).json({ admin: user[0] });
   } catch (error) {
     res.status(502).json({ message: error.message });
@@ -112,11 +109,10 @@ const verifyAdmin = async (req, res) => {
 
 const sendEmail = async (req, res) => {
   const { email } = req.body;
-  console.log(email);
   const verifyToken = jwt.sign({ email: email }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
-  const link = `http://localhost:5173/verify/${verifyToken}`;
+  const link = `${process.env.FRONTEND_URL}/verify/${verifyToken}`;
   try {
     // await sendMail({ to: email, subject: "Verify your email", html });
     await sendMail({
@@ -127,23 +123,20 @@ const sendEmail = async (req, res) => {
     });
     res.status(200).json({ message: "Email sent" });
   } catch (error) {
-    console.log(error.message);
     res.status(502).json({ message: error.message });
   }
 };
 
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
-  console.log(email);
   const admin = await adminModel.findOne({ email });
-  console.log(admin);
   if (!admin) {
     return res.status(400).json({ message: "Admin does not exist" });
   }
   const token = jwt.sign({ email: email }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
-  const link = `http://localhost:5173/verify/${token}`;
+  const link = `${process.env.FRONTEND_URL}/setPassword/${token}`;
 
   try {
     // await sendMail({to: email, subject: "Reset your password", html});
@@ -155,7 +148,6 @@ const forgotPassword = async (req, res) => {
     });
     res.status(200).json({ message: "Email sent" });
   } catch (error) {
-    console.log(error.message);
     res.status(502).json({ message: error.message });
   }
 };

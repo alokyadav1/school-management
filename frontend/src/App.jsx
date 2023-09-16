@@ -57,7 +57,6 @@ function App() {
               role: "Admin",
             }
           })
-          console.log("app.jsx ", res);
         } catch (error) {
           localStorage.removeItem("token");
           localStorage.removeItem("userRole")

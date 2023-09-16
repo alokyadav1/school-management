@@ -33,7 +33,6 @@ function AdminDashboard() {
         });
       }
 
-      // console.log("student data", studentData.data.students[0]?.studentInfo);
 
       //fetch teacher data
       const teacherData = await axios.get("/admin/getTeachers", {

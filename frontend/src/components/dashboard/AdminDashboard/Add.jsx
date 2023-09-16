@@ -35,7 +35,6 @@ function Add({ addSuccess, role }) {
     if (!checkPassword()) {
       return;
     }
-    console.log(formData);
     if (role == "Student") {
       addStudent();
     } else {
@@ -78,7 +77,6 @@ function Add({ addSuccess, role }) {
       });
       addSuccess();
     } catch (error) {
-      console.log(error.message);
       setError(error.response.data.message);
     } finally {
       setLoading(false);
@@ -101,14 +99,12 @@ function Add({ addSuccess, role }) {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log("res:", res);
       dispatchData({
         type: "ADD_TEACHER",
         payload: res.data.teacher,
       });
       addSuccess();
     } catch (error) {
-      console.log(error);
       setError(error.response.data.message);
     } finally {
       setLoading(false);

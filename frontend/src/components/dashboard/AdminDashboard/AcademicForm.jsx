@@ -53,7 +53,6 @@ function AcademicForm({ id, addSuccess }) {
           },
         }
       );
-      console.log(res);
       dispatchData({
         type: "UPDATE_STUDENT",
         payload:{
@@ -63,7 +62,6 @@ function AcademicForm({ id, addSuccess }) {
       })
       addSuccess();
     } catch (error) {
-      console.log(error);
       setError(error.response.data.message);
     } finally{
       setLoading(false);

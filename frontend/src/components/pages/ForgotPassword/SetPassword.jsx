@@ -18,9 +18,12 @@ function SetPassword() {
     e.preventDefault();
     try {
       const res = await axios.post(`/admin/setPassword/${token}`, { password });
-      toast.success(res.data.message, {
+      toast.success(`${res.data.message}. Redirecting to login page`, {
         position: "top-center",
       });
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       toast.error(error.response.data.message, {
         position: "top-center",

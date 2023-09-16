@@ -150,14 +150,12 @@ function StudentData() {
 
   const handleFilter = () => {
     setShowFilter(false);
-    console.log(filter);
     const temp = department.filter((item, index) => {
       if (filter[index]) {
         return department;
       }
     });
     setSelectedDepartment(temp);
-    console.log(selectedDepartment);
   };
 
   return (

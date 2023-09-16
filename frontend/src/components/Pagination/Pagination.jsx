@@ -23,7 +23,6 @@ function Pagination({data,role,filter=null}) {
     setCurrentPage(selected)
   }
   const currentPageData = filteredData?.slice(OFFSET,OFFSET+PER_PAGE)
-  console.log("currentPageData",currentPageData);
   return (
       <>
         <div className='flex flex-wrap items-center justify-center gap-2 px-2'>

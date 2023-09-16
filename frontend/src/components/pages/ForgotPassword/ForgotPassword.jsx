@@ -15,7 +15,6 @@ function ForgotPassword() {
     };
     try {
       const res = await axios.post("/admin/forgotPassword", { email });
-      console.log("forgotpassword :", res);
       toast.success(res.data.message, {
         position: "top-center",
       });

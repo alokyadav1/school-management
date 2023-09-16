@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 import { uploadToCloudinary } from "../../utils/cloudinaryUtils.js";
-import { log } from "console";
 //create token
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -18,8 +17,7 @@ const addStudent = async (req, res) => {
   const student = { ...req.body };
   //   const adminID = req.params.id;
   const adminID = req.user.id;
-  console.log(req.body);
-  console.log(req.file);
+ 
   try {
     //check if admin exists
     const adminExists = await adminModel.findById(adminID);
@@ -41,7 +39,6 @@ const addStudent = async (req, res) => {
       const hashedPassword = await bcrypt.hash(student.password, salt);
       // upload profile pic to cloudinary
       const result = await uploadToCloudinary(req.file, "student");
-      console.log(result);
       admin.studentInfo.push({
         first_name: student.first_name,
         last_name: student.last_name || "",
@@ -64,7 +61,6 @@ const addStudent = async (req, res) => {
       const hashedPassword = await bcrypt.hash(student.password, salt);
       // upload profile pic to cloudinary
       const result = await uploadToCloudinary(req.file, "student");
-      console.log(result);
       const newStudent = new studentModel({
         adminId: adminID,
         studentInfo: [
@@ -89,7 +85,6 @@ const addStudent = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error, message: error.message });
   }
 };
@@ -123,7 +118,6 @@ const removeStudent = async (req, res) => {
 
 const updateStudent = async (req, res) => {
   const studentData = { ...req.body };
-  console.log("updatedStudent", studentData);
   const id = req.params.id;
   const adminID = req.user.id;
   try {

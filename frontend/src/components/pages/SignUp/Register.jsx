@@ -77,7 +77,6 @@ function Register() {
       }
     } catch (error) {
       setError(error.response.data.message);
-      console.log(error);
     }
     setLoading(false);
   };
@@ -90,16 +89,7 @@ function Register() {
       </div>}
       <form className="login space-y-6 mx-auto" onSubmit={handleSubmit}>
         <div className="md:w-4/5 mx-auto pt-5">
-          <label htmlFor="role">Register as : </label>
-          <select
-            name="role"
-            id="role"
-            onChange={(e) => setUserRole(e.target.value)}
-          >
-            <option value="admin">Admin</option>
-            <option value="student">student</option>
-            <option value="teacher">teacher</option>
-          </select>
+          <p htmlFor="role">Registering as : <span>Admin</span> </p>
         </div>
         <div className="md:w-4/5 mx-auto">
           <label

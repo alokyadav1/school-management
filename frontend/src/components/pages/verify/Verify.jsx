@@ -6,7 +6,6 @@ import axios from "../../../Axios/axios";
 
 function VerifyEmail() {
   const { token } = useParams();
-  console.log("token", token);
   const [email, setEmail] = useState(null);
   const [error, setError] = useState("Invalid Token");
   const [loading, setLoading] = useState(false);
@@ -20,10 +19,8 @@ function VerifyEmail() {
         } else if(res.status === 400) {
             setError(res.data.message);
         }
-        console.log(res);
       } catch (error) {
         setError(error.response.data.message);
-        console.log(error);
       }
     };
     verifyEmail();

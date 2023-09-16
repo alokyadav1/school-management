@@ -16,7 +16,6 @@ const createToken = (id) => {
 const addTeacher = async (req, res) => {
   const teacher = { ...req.body };
   const adminID = req.user.id;
-  console.log(req.body);
   try {
     //check if admin exists
     const adminExists = await adminModel.findById(adminID);
@@ -37,7 +36,6 @@ const addTeacher = async (req, res) => {
       const hashedPassword = await bcrypt.hash(teacher.password, salt);
       // upload profile pic to cloudinary
       const result = await uploadToCloudinary(req.file, "teacher");
-      console.log(result);
       admin.teacherInfo.push({
         first_name: teacher.first_name,
         last_name: teacher.last_name || null,
@@ -84,7 +82,6 @@ const addTeacher = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error, message: error.message });
   }
 };
@@ -120,7 +117,6 @@ const removeTeacher = async (req, res) => {
 const updateTeacher = async (req, res) => {
   const teacherData = { ...req.body };
   const id = req.params.id;
-  console.log(teacherData, id);
   try {
     const teacher = await teacherModel.findOne({"teacherInfo._id": id});
     if (!teacher) {

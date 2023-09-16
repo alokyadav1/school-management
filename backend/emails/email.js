@@ -23,7 +23,6 @@ const sendMail = async ({ to, subject, link, mailType }) => {
   const __dirname = getCurrentDirectory();
   const template = getTemplate(mailType);
 
-  console.log("sendMail", __dirname);
   ejs.renderFile(
     __dirname + "/" +  template,
     { email: to, link },

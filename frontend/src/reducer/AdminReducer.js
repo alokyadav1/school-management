@@ -57,16 +57,11 @@ function AdminReducer(data, action) {
       };
 
     case "UPDATE_STUDENT":
-      console.log("action.payload", action.payload);
-      console.log("data", data.students);
       const updateStudent = data.students.map((student) => {
         if (student._id == action.payload.id) {
-          console.log(true);
-          console.log("student payload", action.payload.updatedStudent);
           return action.payload.updatedStudent;
         } else return student;
       });
-      console.log("updatedStudent", updateStudent);
       return {
         ...data,
         students: updateStudent,
@@ -75,8 +70,6 @@ function AdminReducer(data, action) {
     case "UPDATE_TEACHER":
       const updateTeacher = data.teachers.map((teacher) => {
         if (teacher._id == action.payload.id) {
-          console.log(true);
-          console.log("teacher payload", action.payload.updatedTeacher);
           return action.payload.updatedTeacher;
         } else return teacher;
       });

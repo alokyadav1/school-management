@@ -10,7 +10,6 @@ function NotVerified() {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
   let email = null;
   if (!location.state) {
     email = location.state?.email;

@@ -6,7 +6,6 @@ const uploadToCloudinary = async (file, folder) => {
       folder: folder,
       use_filename: true,
     });
-    console.log("upload: " + upload);
     return upload;
   } catch (error) {
     console.log(error);
@@ -17,7 +16,6 @@ const uploadToCloudinary = async (file, folder) => {
 const deleteFromCloudinary = async (file, folder) => {
   try {
     const upload = await cloudinary.uploader.destroy(folder + "/" + file);
-    console.log("upload: " + upload);
     return upload;
   } catch (error) {
     console.log(error);

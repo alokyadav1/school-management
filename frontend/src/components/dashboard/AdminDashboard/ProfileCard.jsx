@@ -11,7 +11,6 @@ import AdminContext from "../../../context/AdminContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function ProfileCard({ role, data }) {
-  console.log(`testing ${role} `, data);
   const navigate = useNavigate();
   const { dispatchData } = useContext(AdminContext);
   const [error, setError] = useState("");
@@ -48,7 +47,6 @@ function ProfileCard({ role, data }) {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(res);
       dispatchData({
         type: "DELETE_STUDENT",
         payload: {
@@ -57,7 +55,6 @@ function ProfileCard({ role, data }) {
       });
     } catch (error) {
       setError(error.message);
-      console.log(error.message);
     }
   };
   const deleteTeacher = async () => {
@@ -67,7 +64,6 @@ function ProfileCard({ role, data }) {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(res);
       dispatchData({
         type: "DELETE_TEACHER",
         payload: {
@@ -76,7 +72,6 @@ function ProfileCard({ role, data }) {
       });
     } catch (error) {
       setError(error.message);
-      console.log(error.message);
     }
   };
 

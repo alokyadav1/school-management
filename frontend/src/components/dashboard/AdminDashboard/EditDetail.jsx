@@ -65,7 +65,6 @@ function EditDetail() {
     } else {
       updateTeacher();
     }
-    console.log(formData);
 
     setLoading(false);
   };
@@ -103,7 +102,6 @@ function EditDetail() {
       notify();
     } catch (error) {
       setError(error.response.data.message);
-      console.log(error);
     }
   };
 
@@ -132,7 +130,6 @@ function EditDetail() {
       notify();
     } catch (error) {
       setError(error.response.data.message);
-      console.log(error);
     }
   };
 

@@ -4,7 +4,6 @@ import teacherModel from "../../model/teacher.js";
 
 const addStandard = async (req, res) => {
     const data = { ...req.body };
-    console.log(req.body);
     try {
         
         const standardExists = await standardModel.findOne({ standard: data.standard })
