@@ -5,14 +5,13 @@ import axios from "../../../Axios/axios.js";
 import AdminContext from "../../../context/AdminContext.js";
 
 function AcademicForm({ id, addSuccess }) {
-  const {dispatchData}  = useContext(AdminContext)
+  const { dispatchData } = useContext(AdminContext);
   const [marks, setMarks] = useState([]);
   const [mark, setMark] = useState({});
   const [exam, setExam] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
-
 
   const addMarkDetail = (e) => {
     e.preventDefault();
@@ -55,15 +54,15 @@ function AcademicForm({ id, addSuccess }) {
       );
       dispatchData({
         type: "UPDATE_STUDENT",
-        payload:{
+        payload: {
           id,
-          updatedStudent:res.data.updatedStudent
+          updatedStudent: res.data.updatedStudent,
         },
-      })
+      });
       addSuccess();
     } catch (error) {
       setError(error.response.data.message);
-    } finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -75,60 +74,62 @@ function AcademicForm({ id, addSuccess }) {
         </p>
       )}
       {/* <span>id- {id}</span> */}
-      <form onSubmit={handleSubmit} className=" py-2">
-        <div className="flex gap-2 p-1 items-center">
-          <label htmlFor="exam_name" className="w-2/6">
-            Exam Name:
-          </label>
-          <input
-            type="text"
-            name="exam_name"
-            id="exam_name"
-            placeholder="exam name"
-            value={exam}
-            className=" shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
-            onChange={(e) => setExam(e.target.value)}
-            required
-          />
+      <form onSubmit={handleSubmit} className="py-2">
+        <div className="flex flex-col md:flex-row gap-2 p-1 items-center">
+          <div className="md:w-2/6">
+            <label htmlFor="exam_name">Exam Name:</label>
+          </div>
+          <div className="md:w-4/6">
+            <input
+              type="text"
+              name="exam_name"
+              id="exam_name"
+              placeholder="Exam name"
+              value={exam}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
+              onChange={(e) => setExam(e.target.value)}
+              required
+            />
+          </div>
         </div>
-        <div className="flex flex-wrap gap-x-2 p-1">
-          <div className="flex flex-col justify-center flex-1">
+        <div className="flex flex-wrap gap-2 p-1">
+          <div className="flex w-full md:w-4/12 flex-col justify-center">
             <label htmlFor="subject_name">Subject Name:</label>
             <input
               type="text"
               name="subject"
               value={mark.subject}
               id="subject_name"
-              placeholder="subject name"
+              placeholder="Subject name"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
               onChange={handlechange}
               required
             />
           </div>
-          <div className="flex flex-col flex-1">
-            <label htmlFor="marks_obtained">Marks Obtained</label>
+          <div className="flex w-full md:w-4/12 flex-col">
+            <label htmlFor="marks_obtained">Marks Obtained:</label>
             <input
               type="number"
               min={0}
               name="marks_obtained"
               id="marks_obtained"
               value={mark.marks_obtained}
-              placeholder="marks obtained"
-              className="w-fit shadow appearance-none border rounded py-2 ps-2 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
+              placeholder="Marks obtained"
+              className="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
               onChange={handlechange}
               required
             />
           </div>
-          <div className="flex flex-col justify-center flex-1">
-            <label htmlFor="total_marks">Total marks:</label>
+          <div className="flex w-full md:w-4/12 flex-col">
+            <label htmlFor="total_marks">Total Marks:</label>
             <input
               type="number"
               min={0}
               name="total_marks"
               id="total_marks"
               value={mark.total_marks}
-              placeholder="total marks"
-              className="w-auto shadow appearance-none border rounded py-2 ps-2 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
+              placeholder="Total marks"
+              className="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-2 focus:shadow-outline focus:outline-blue-500 focus:border-none border-slate-400"
               onChange={handlechange}
               required
             />
@@ -136,13 +137,14 @@ function AcademicForm({ id, addSuccess }) {
         </div>
         <div className="w-full flex justify-center p-2">
           <button
-            className="bg-orange-700 text-white  p-1 px-2 rounded-md font-semibold"
+            className="bg-orange-700 text-white p-1 px-2 rounded-md font-semibold"
             onClick={addMarkDetail}
           >
-            add Subject
+            Add Subject
           </button>
         </div>
       </form>
+
       {marks.length > 0 && (
         <table className="w-full bg-slate-200 shadow-md mx-auto">
           <thead className="bg-slate-400 w-full text-white">

@@ -6,6 +6,8 @@ import './App.css'
 
 import axios from "./Axios/axios.js"
 // import Dashboard from './components/dashboard/DashBoard'
+import Home from './components/pages/Home/Home'
+
 import NotVerified from './components/pages/verify/NotVerified'
 import ForgotPassword from './components/pages/ForgotPassword/ForgotPassword'
 import SetPassword from './components/pages/ForgotPassword/SetPassword'
@@ -79,7 +81,7 @@ function App() {
     <UserContext.Provider value={{ currentUser, dispatchUser }}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<h1>Home</h1>} />
+          <Route path='/' element={<Home />} />
 
           {/* admin route */}
           <Route path='/admin' element={<ProtectedAdmin> <AdminDashboard /> </ProtectedAdmin>} >

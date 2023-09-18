@@ -44,7 +44,7 @@ function StudentStandard({studentData}) {
       },
     ],
   };
-  console.log("studentData", studentData);
+  // console.log("studentData", studentData);
 
   return <Bar options={options} data={data} />;
 }

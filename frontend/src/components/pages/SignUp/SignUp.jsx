@@ -13,48 +13,48 @@ function SignUp() {
   else if (localStorage.getItem("userRole") == "teacher") dashboard = "teacher";
   return (
     <>
-      {localStorage.getItem("token") ? (
-        <Navigate to={`/${dashboard}/`} />
-      ) : null}
+    {localStorage.getItem("token") ? (
+      <Navigate to={`/${dashboard}/`} />
+    ) : null}
+    <div className="px-2">
       <div>
-        <div>
-          <h1 className="text-center font-bold text-4xl uppercase text-slate-700">
-            {" "}
-            Login
-          </h1>
+        <h1 className="text-center font-bold text-4xl uppercase text-slate-700">
+          Login
+        </h1>
+      </div>
+      <div
+        className="signup flex flex-col-reverse lg:flex-row gap-2 justify-center items-center lg:mt-8"
+        style={{ fontFamily: "San Francisco" }}
+      >
+        <div className="w-full lg:w-2/5 player-container lg:mr-8">
+          <Player
+            autoplay
+            loop
+            className="player"
+            src="https://assets1.lottiefiles.com/packages/lf20_jcikwtux.json"
+          ></Player>
         </div>
-        <div
-          className="signup flex gap-2 justify-center items-center"
-          style={{ fontFamily: "San Francisco" }}
-        >
-          <div className="w-2/5 player-container">
-            <Player
-              autoplay
-              loop
-              className="player"
-              src="https://assets1.lottiefiles.com/packages/lf20_jcikwtux.json"
-            ></Player>
+        <div className="signup-form w-full lg:w-2/5 mt-5 lg:mt-0">
+          <div className="flex flex-col lg:flex-row gap-2 py-5">
+            <button
+              onClick={() => setSignup("login")}
+              className={signup === "login" ? "activeTab tab" : "tab"}
+            >
+              Login
+            </button>
+            <button
+              onClick={() => setSignup("register")}
+              className={signup === "register" ? "activeTab tab" : "tab"}
+            >
+              Register
+            </button>
           </div>
-          <div className="signup-form w-2/5 mt-5">
-            <div className="flex gap-x-2 py-5">
-              <button
-                onClick={() => setSignup("login")}
-                className={signup == "login" ? "activeTab tab" : "tab"}
-              >
-                Login
-              </button>
-              <button
-                onClick={() => setSignup("register")}
-                className={signup == "register" ? "activeTab tab" : "tab"}
-              >
-                Register
-              </button>
-            </div>
-            {signup === "login" ? <Login /> : <Register />}
-          </div>
+          {signup === "login" ? <Login /> : <Register />}
         </div>
       </div>
-    </>
+    </div>
+  </>
+  
   );
 }
 

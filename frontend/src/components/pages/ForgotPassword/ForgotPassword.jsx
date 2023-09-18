@@ -29,18 +29,18 @@ function ForgotPassword() {
   return (
     <>
       <ToastContainer />
-      <div className="flex h-screen bg-slate-900">
-        <div className="flex-1 flex items-center justify-end">
+      <div className="flex flex-col lg:flex-row h-screen bg-slate-900">
+        <div className="lg:flex-1 flex items-center justify-end">
           <img
             src={ForgotPasswordSvg}
             alt="Forgot Password"
-            className="w-2/3 drop-shadow-2xl"
+            className="w-full lg:w-2/3 drop-shadow-2xl"
           />
         </div>
-        <div className="flex-1 flex items-center justify-start ps-10 text-white">
-          <div className="w-2/3">
+        <div className="lg:flex-1 flex items-center justify-start px-2 text-white">
+          <div className="w-full lg:w-2/3">
             <h1 className="text-2xl font-bold text-center drop-shadow-xl">
-              Forgot Your Password ?
+              Forgot Your Password?
             </h1>
             <form className="py-10" onSubmit={handleSubmit}>
               <div className="p-2">

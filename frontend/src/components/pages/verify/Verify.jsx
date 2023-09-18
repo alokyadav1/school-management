@@ -6,30 +6,30 @@ import axios from "../../../Axios/axios";
 
 function VerifyEmail() {
   const { token } = useParams();
-  const [email, setEmail] = useState(null);
-  const [error, setError] = useState("Invalid Token");
+  const [email, setEmail] = useState("alok");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const verifyEmail = async () => {
-        setLoading(true);
-      try {
-        const res = await axios.get(`/admin/verify/${token}`);
-        if (res.status === 200) {
-          setEmail(res.data.email);
-        } else if(res.status === 400) {
-            setError(res.data.message);
-        }
-      } catch (error) {
-        setError(error.response.data.message);
-      }
-    };
-    verifyEmail();
-    setLoading(false);
-  },[token]);
+  // useEffect(() => {
+  //   const verifyEmail = async () => {
+  //       setLoading(true);
+  //     try {
+  //       const res = await axios.get(`/admin/verify/${token}`);
+  //       if (res.status === 200) {
+  //         setEmail(res.data.email);
+  //       } else if(res.status === 400) {
+  //           setError(res.data.message);
+  //       }
+  //     } catch (error) {
+  //       setError(error.response.data.message);
+  //     }
+  //   };
+  //   verifyEmail();
+  //   setLoading(false);
+  // },[token]);
   if (email) {
     return (
-      <div className=" bg-slate-200 text-white h-screen flex items-center justify-center">
-        <div className="bg-white text-slate-800 w-1/2 rounded-md shadow-2xl p-10 text-center">
+      <div className="bg-slate-200 text-white min-h-screen flex flex-col items-center justify-center">
+        <div className="bg-white text-slate-800 w-full md:w-2/3 lg:w-1/2 rounded-md shadow-2xl p-5 text-center">
           <h1 className="text-black font-bold text-2xl">Account Activated</h1>
           <div className="w-full">
             <Player
@@ -50,24 +50,27 @@ function VerifyEmail() {
             <p>Please use the link below to login to your account.</p>
           </div>
           <div className="flex text-white w-fit mx-auto">
-            <NavLink to="/login" className="bg-blue-500 p-2 px-10 rounded-sm">Login to your account</NavLink>
+            <NavLink to="/login" className="bg-blue-500 p-2 px-10 rounded-sm">
+              Login to your account
+            </NavLink>
           </div>
         </div>
       </div>
     );
   } else if (error) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <h1 className="uppercase text-3xl font-bold">Email already verified or link expired</h1>
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="uppercase text-3xl font-bold">
+          Email already verified or link expired
+        </h1>
       </div>
     );
   } else {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="min-h-screen flex items-center justify-center">
         <h1 className="uppercase text-3xl font-bold">Loading...</h1>
       </div>
     );
   }
 }
-
 export default VerifyEmail;

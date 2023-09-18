@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../../Axios/axios.js";
 import UserContext from "../../../context/UserContext.js";
 import AdminContext from "../../../context/AdminContext.js";
@@ -109,6 +109,7 @@ function StudentData() {
     ],
   };
   const studentData = data?.students;
+  const [showAction, setShowAction] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [filter, setFilter] = useState(new Array(6).fill(true));
@@ -158,55 +159,72 @@ function StudentData() {
     setSelectedDepartment(temp);
   };
 
+  const handleShowAction = () => {
+    setShowAction(!showAction);
+  };
   return (
     <>
       <ToastContainer />
-      <div className="relative">
-        <header className="p-2 flex items-center justify-evenly sticky top-0 bg-white backdrop-blur-lg">
-          <h1 className="text-2xl font-bold text-center">Student Data</h1>
-          <div className=" w-1/2 ">
-            <div className="relative m-auto  flex justify-center">
+      <div className="relative z-10">
+        <header className="p-2 flex flex-wrap lg:flex-row items-center justify-between sticky top-0 bg-white">
+          <h1 className="text-2xl font-bold text-center lg:text-left  mx-auto">
+            Student Data
+          </h1>
+          <div className="flex-1 mt-4 lg:mt-0">
+            <div className="relative m-auto flex justify-center">
               <input
                 type="text"
-                className="py-2 px-4 w-2/3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition duration-300 m-auto"
+                className="py-2 px-4 w-fit md:w-2/3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition duration-300 m-auto"
                 placeholder="Search..."
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
             </div>
           </div>
-
-          <div className="flex items-stretch">
-            <button
-              className="bg-blue-500 text-white rounded-s-lg p-2 hover:bg-blue-700 shadow-lg"
-              onClick={openModal}
+          <div className="z-50">
+            <span
+              className="font-bold relative md:hidden"
+              onClick={handleShowAction}
             >
-              Add Student
-            </button>
-            <div className="bg-blue-700 p-2 text-white flex items-center rounded-e-lg">
-              <BsPersonFillAdd />
+              ...
+            </span>
+            <div
+              className={
+                showAction
+                  ? "block absolute right-2 md:block md:relative border border-slate-500 bg-white rounded-lg shadow-xl p-2 md:bg-transparent md:border-none md:shadow-none"
+                  : "hidden md:block md:bg-transparent"
+              }
+            >
+              <div className="flex md:mt-4 lg:mt-0 items-stretch">
+                <button
+                  className="w-full text-black md:bg-blue-500 md:text-white rounded-lg md:p-2 md:hover:bg-blue-700 md:shadow-lg"
+                  onClick={openModal}
+                >
+                  Add Student
+                </button>
+                <hr />
+
+                {/* <div className="hidmd:bg-blue-700 p-2 text-white flex items-center rounded-lg">
+                  <BsPersonFillAdd />
+                </div> */}
+              </div>
+              <div>
+                <Link to="academicDetails">Add Academic Details</Link>
+              </div>
             </div>
           </div>
-          <div>
-            <NavLink
-              to="academicDetails"
-              className="p-2 rounded-lg shadow-lg bg-blue-500 text-white hover:bg-blue-700"
-            >
-              Add Academic Details
-            </NavLink>
-          </div>
         </header>
+
         <hr className="my-2" />
 
-        {/* filter */}
         <div className="p-2 relative flex justify-end">
           <div
             className="flex justify-end items-center w-fit cursor-pointer"
             onClick={toggleFilter}
           >
-            <FaFilter className="text-blue-700 text-xl" />
+            <FaFilter className="text-blue-700 text-xl -z-10" />
           </div>
           {showFilter && (
-            <div className="p-2 bg-white rounded-md shadow-2xl absolute top-full right-0 border-gray-500 border">
+            <div className="p-2 bg-white rounded-md shadow-2xl absolute top-full right-0 border-gray-500 border z-20">
               <div>
                 <h1 className="text-lg font-bold">Standard</h1>
               </div>
@@ -245,10 +263,15 @@ function StudentData() {
             </div>
           )}
         </div>
-        <div>
-          <Pagination data={data?.students} role="Student" filter={selectedDepartment} />
+        <div className=" -z-30">
+          <Pagination
+            data={data?.students}
+            role="Student"
+            filter={selectedDepartment}
+          />
         </div>
       </div>
+
       <div>
         {showModal && (
           <CustomModal handleRequestClose={closeModal} modalTitle="Add Student">

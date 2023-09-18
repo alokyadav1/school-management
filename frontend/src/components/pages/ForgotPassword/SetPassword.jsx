@@ -35,21 +35,21 @@ function SetPassword() {
   return (
     <>
       <ToastContainer />
-      <div className="flex h-screen bg-slate-900">
-        <div className="flex-1 flex items-center justify-end">
+      <div className="flex flex-col lg:flex-row h-screen bg-slate-900">
+        <div className="lg:flex-1 flex items-center justify-center">
           <img
             src={ForgotPasswordSvg}
             alt="Forgot Password"
-            className="w-2/3 drop-shadow-2xl"
+            className="w-full max-w-lg drop-shadow-2xl"
           />
         </div>
-        <div className="flex-1 flex items-center justify-start ps-10 text-white">
-          <div className="w-2/3">
-            <h1 className="text-2xl font-bold text-center drop-shadow-xl">
-              Change Your Password.
+        <div className="lg:flex-1 flex items-center justify-center px-5 text-white">
+          <div className="w-full max-w-md">
+            <h1 className="text-2xl font-bold text-center mb-5">
+              Change Your Password
             </h1>
-            <form className="py-10" onSubmit={handleSubmit}>
-              <div className="p-2">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-5">
                 <label htmlFor="password" className="text-sm opacity-80">
                   Password
                 </label>
@@ -60,10 +60,10 @@ function SetPassword() {
                   placeholder="Enter your password"
                   onBlur={(e) => setPassword(e.target.value)}
                   required
-                  className="block w-full rounded-md border-1 border-slate-500 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="w-full rounded-md border-1 border-slate-500 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
-              <div className="p-2">
+              <div className="mb-5">
                 <label htmlFor="confirmPassword" className="text-sm opacity-80">
                   Confirm Password
                 </label>
@@ -71,16 +71,16 @@ function SetPassword() {
                   id="confirmPassword"
                   name="confirmPassword"
                   type="password"
-                  placeholder="Enter your confirm Password"
+                  placeholder="Confirm your password"
                   onBlur={(e) => setConfirmPassword(e.target.value)}
                   required
-                  className="block w-full rounded-md border-1 border-slate-500 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="w-full rounded-md border-1 border-slate-500 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
-              <div className="w-fit mx-auto mt-5">
+              <div className="w-fit mx-auto">
                 <button
                   type="submit"
-                  className="bg-blue-700 text-white rounded-md shadow-md p-2 border border-slate-400 disabled:bg-blue-300 disabled:cursor-not-allowed"
+                  className="w-full bg-blue-700 text-white rounded-md shadow-md p-2 border border-slate-400 disabled:bg-blue-300 disabled:cursor-not-allowed"
                   disabled={loading}
                 >
                   Reset Password

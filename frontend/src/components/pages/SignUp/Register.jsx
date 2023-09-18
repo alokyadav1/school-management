@@ -41,7 +41,7 @@ function Register() {
             });
             navigate("/admin/");
           } else {
-            navigate("/notVerified", {state:{email}});
+            navigate("/notVerified", { state: { email } });
           }
           break;
         case "teacher":
@@ -82,14 +82,22 @@ function Register() {
   };
   return (
     <div>
-      {error && <div className="p-2">
-        <p className="text-center text-red-900 bg-slate-200 p-2 rounded-md shadow-sm">
-          {error}
-        </p>
-      </div>}
+      {error && (
+        <div className="p-2">
+          <p className="text-center text-red-900 bg-slate-200 p-2 rounded-md shadow-sm">
+            {error}
+          </p>
+        </div>
+      )}
       <form className="login space-y-6 mx-auto" onSubmit={handleSubmit}>
         <div className="md:w-4/5 mx-auto pt-5">
-          <p htmlFor="role">Registering as : <span>Admin</span> </p>
+          <p
+            htmlFor="role"
+            className="block text-center text-sm font-medium leading-6 text-gray-900"
+          >
+            Registering as:{" "}
+            <span className="text-indigo-600 font-semibold">Admin</span>
+          </p>
         </div>
         <div className="md:w-4/5 mx-auto">
           <label
@@ -111,14 +119,12 @@ function Register() {
           </div>
         </div>
         <div className="md:w-4/5 mx-auto">
-          <div className="flex items-center justify-between">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Password
-            </label>
-          </div>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Password
+          </label>
           <div className="mt-2">
             <input
               id="password"
@@ -135,7 +141,7 @@ function Register() {
         <div className="w-4/5 mx-auto">
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
+            className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
             disabled={loading}
           >
             Register

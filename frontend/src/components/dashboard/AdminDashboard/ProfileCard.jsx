@@ -12,6 +12,60 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function ProfileCard({ role, data }) {
   const navigate = useNavigate();
+  const [showAction, setShowAction] = useState(false);
+
+  // view detail
+  const viewDetail = (data) => {
+    navigate(`viewdetail/${data._id}`, { state: { data, role } });
+  };
+
+  const handleAction = () => {
+    setShowAction(!showAction);
+  }
+  return (
+    <>
+      <ToastContainer />
+      <div className="bg-gray-100 px-2 md:px-5 py-2 rounded-xl flex flex-row justify-between items-center w-full relative ">
+        <div
+          onClick={(e) => viewDetail(data)}
+          className="cursor-pointer flex flex-wrap flex-row gap-2 justify-start items-center flex-1"
+        >
+          <div className="flex items-center">
+            <img
+              src={data?.profile_pic ? data?.profile_pic : UserImg}
+              alt=""
+              className="rounded-full bg-white p-1 w-12 h-12"
+            />
+            <div>
+              <p>
+                {data.first_name} {data.last_name}
+              </p>
+              <span className="text-slate-500 text-sm italic">{data._id}</span>
+            </div>
+          </div>
+          {role === "Student" && (
+            <span className="bg-blue-700 rounded-lg text-sm px-2 text-white font-bold py-0 pt-1">
+              {data?.standard} <sup>th</sup>
+            </span>
+          )}
+        </div>
+        <div className="hidden md:block">
+          <UserAction data={data} role={role} />
+        </div>
+        <div className=" md:hidden absolute right-2 top-0 px-2">
+          <span className="font-bold" onClick={handleAction}>...</span>
+          {/* <UserAction data={data} role={role} /> */}
+          {showAction && <div className="absolute right-0 bg-white p-2 rounded-md shadow-lg z-30">
+            <UserAction data={data} role={role} />
+          </div>}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function UserAction({ data, role }) {
+  const navigate = useNavigate();
   const { dispatchData } = useContext(AdminContext);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -75,11 +129,6 @@ function ProfileCard({ role, data }) {
     }
   };
 
-  // view detail
-  const viewDetail = (data) => {
-    navigate(`viewdetail/${data._id}`, { state: { data,role } });
-  };
-
   //edit detail
   const editDetail = (data) => {
     navigate(`editdetail/${data._id}`, { state: { data, role } });
@@ -89,60 +138,37 @@ function ProfileCard({ role, data }) {
   const performanceReport = (data) => {
     navigate(`performanceReport/${data._id}`, { state: { data } });
   };
-
   return (
     <>
-      <ToastContainer />
-      <div className=" bg-gray-100 px-5 py-2 rounded-xl flex justify-between w-full">
-        <div
-          onClick={(e) => viewDetail(data)}
-          className=" cursor-pointer flex gap-x-2 justify-start items-center"
+      <div className="flex flex-wrap items-center justify-center  gap-3 md:gap-x-3 mt-3 lg:mt-0">
+        <button
+          className="bg-orange-700 text-white rounded-lg px-2 cursor-pointer"
+          onClick={openModal}
+          disabled={loading}
         >
-          <img
-            src={data?.profile_pic ? data?.profile_pic : UserImg}
-            alt=""
-            className="rounded-full bg-white p-1 w-12 h-12"
-          />
-          <div>
-            <p>
-              {data.first_name} {data.last_name}
-            </p>
-            <span className="text-slate-500 text-sm italic">{data._id}</span>
-          </div>
-          {role === "Student" && (
-            <span className="bg-blue-700 rounded-lg text-sm px-2 text-white font-bold py-0 pt-1">
-              {data?.standard} <sup>th</sup>
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap items-center justify-end gap-x-3">
+          <span className="flex items-center gap-2">
+            <AiFillDelete />
+            Delete
+          </span>
+        </button>
+        <button
+          className="bg-blue-700 text-white rounded-lg px-2"
+          onClick={(e) => editDetail(data)}
+        >
+          <span className="flex items-center gap-2">
+            <AiFillEdit /> Edit
+          </span>
+        </button>
+        {role === "Student" && (
           <button
-            className="bg-orange-700 text-white rounded-lg px-1  cursor-pointer"
-            onClick={openModal}
-            disabled={loading}
-          >
-            <span className="flex items-center gap-x-2">
-              <AiFillDelete />
-              Delete
-            </span>
-          </button>
-          <button
-            className="bg-blue-700 text-white rounded-lg px-1"
-            onClick={(e) => editDetail(data)}
-          >
-            <span className="flex items-center gap-x-2">
-              <AiFillEdit /> Edit
-            </span>
-          </button>
-          {role == "Student" && <button
-            className="bg-blue-700 text-white rounded-lg px-1"
+            className="bg-blue-700 text-white rounded-lg px-2"
             onClick={(e) => performanceReport(data)}
           >
-            <span className="flex items-center gap-x-2">
+            <span className="flex items-center gap-2">
               <BiSolidReport /> Report
             </span>
-          </button>}
-        </div>
+          </button>
+        )}
       </div>
       <div>
         {showModal && (
@@ -170,5 +196,4 @@ function ProfileCard({ role, data }) {
     </>
   );
 }
-
 export default ProfileCard;

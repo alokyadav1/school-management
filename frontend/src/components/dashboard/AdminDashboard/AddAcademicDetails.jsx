@@ -45,7 +45,7 @@ function AddAcademicDetails() {
   return (
     <>
       <ToastContainer />
-      <header className="flex items-center justify-between p-2 m-0 sticky -top-2 bg-transparent backdrop-blur-md">
+      <header className="flex flex-wrap items-center gap-2 justify-between p-2 m-0 sticky -top-2 bg-transparent">
         <button className="flex gap-x-2 items-center" onClick={handleBack}>
           <IoMdArrowRoundBack />
           <span>back</span>

@@ -8,7 +8,7 @@ import {FaChalkboardTeacher} from "react-icons/fa"
 import {FiLogOut} from "react-icons/fi"
 import "./admin.css";
 
-function SideBar() {
+function SideBar({mobileEventHandler}) {
   const navigate = useNavigate();
   const { currentUser, dispatchUser } = useContext(UserContext);
   const handleLogout = () => {
@@ -26,7 +26,7 @@ function SideBar() {
       <div className="py-2">
         <ul>
           <li className=" rounded-md p-1 hover:bg-blue-200 my-1">
-            <div>
+            <div onClick={mobileEventHandler}>
               <AiOutlineDashboard className="inline-block mr-2" />
               <NavLink to="/admin/" className="w-full">
                 Dashboard
@@ -34,13 +34,13 @@ function SideBar() {
             </div>
           </li>
           <li className=" rounded-md p-1 hover:bg-blue-200 my-1">
-            <div className="flex justify-start items-center">
+            <div className="flex justify-start items-center" onClick={mobileEventHandler}>
               <PiStudentFill className="inline-block mr-2" />
               <NavLink to="/admin/student">Student</NavLink>
             </div>
           </li>
           <li className=" rounded-md p-1 hover:bg-blue-200 my-1">
-            <div className="flex justify-start items-center">
+            <div className="flex justify-start items-center" onClick={mobileEventHandler}>
               <FaChalkboardTeacher className="inline-block mr-2" />
               <NavLink to="/admin/teacher">Teacher</NavLink>
             </div>

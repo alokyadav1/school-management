@@ -41,7 +41,7 @@ function Login() {
             });
             navigate("/admin/");
           } else {
-            navigate("/notVerified",{state:{email}});
+            navigate("/notVerified", { state: { email } });
           }
           break;
         case "teacher":
@@ -91,15 +91,16 @@ function Login() {
       )}
       <form className="login space-y-6 mx-auto" onSubmit={handleSubmit}>
         <div className="md:w-4/5 mx-auto pt-5">
-          <label htmlFor="role">login as : </label>
+          <label htmlFor="role">Login As:</label>
           <select
             name="role"
             id="role"
             onChange={(e) => setUserRole(e.target.value)}
+            className="w-full rounded-md border p-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-indigo-600 sm:text-sm"
           >
             <option value="admin">Admin</option>
-            <option value="student">student</option>
-            <option value="teacher">teacher</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
           </select>
         </div>
         <div className="md:w-4/5 mx-auto">
@@ -107,7 +108,7 @@ function Login() {
             htmlFor="email"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
-            Email address
+            Email Address
           </label>
           <div className="mt-2">
             <input
@@ -117,7 +118,7 @@ function Login() {
               autoComplete="email"
               onBlur={(e) => setEmail(e.target.value)}
               required
-              className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="w-full rounded-md border p-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-indigo-600 sm:text-sm"
             />
           </div>
         </div>
@@ -146,18 +147,18 @@ function Login() {
               autoComplete="current-password"
               onBlur={(e) => setPassword(e.target.value)}
               required
-              className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="w-full rounded-md border p-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-indigo-600 sm:text-sm"
             />
           </div>
         </div>
 
-        <div className="w-4/5 mx-auto">
+        <div className="md:w-4/5 mx-auto">
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
+            className="w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
             disabled={loading}
           >
-            Sign in
+            Sign In
           </button>
         </div>
       </form>

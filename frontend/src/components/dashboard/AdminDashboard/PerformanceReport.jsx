@@ -21,7 +21,7 @@ function PerformanceReport() {
 
   return (
     <>
-      <header className="flex flex-wrap items-center justify-between p-2 sticky top-0 bg-white">
+      <header className="flex flex-wrap gap-2 items-center justify-between p-2 sticky top-0 bg-white">
         <button className="flex gap-x-2 items-center" onClick={handleBack}>
           <IoMdArrowRoundBack />
           <span>back</span>
