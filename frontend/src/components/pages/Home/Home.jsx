@@ -107,7 +107,7 @@ function Home() {
         Empowering Education through Innovation
       </p>
       <Link
-        to="/signup"
+        to="/login"
         className="mt-8 inline-block bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105"
       >
         Get Started
