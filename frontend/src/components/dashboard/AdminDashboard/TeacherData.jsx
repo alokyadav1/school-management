@@ -6,6 +6,7 @@ import axios from "../../../Axios/axios.js";
 import UserContext from "../../../context/UserContext.js";
 import AdminContext from "../../../context/AdminContext.js";
 import { BsPersonFillAdd } from "react-icons/bs";
+import {LuMoreVertical} from "react-icons/lu";
 import UserImg from "../../../assets/images/user.png";
 import ProfileCard from "./ProfileCard.jsx";
 import Pagination from "../../Pagination/Pagination.jsx";
@@ -134,7 +135,7 @@ function TeacherData() {
   return (
     <>
       <ToastContainer />
-      <div className="relative">
+      <div className="relative min-h-screen">
       <header className="p-2 flex flex-wrap lg:flex-row items-center justify-between sticky top-0 bg-white">
           <h1 className="text-2xl font-bold text-center lg:text-left  mx-auto">
             Teacher Data
@@ -154,7 +155,7 @@ function TeacherData() {
               className="font-bold relative md:hidden"
               onClick={handleShowAction}
             >
-              ...
+              <LuMoreVertical className="font-bolder" />
             </span>
             <div
               className={

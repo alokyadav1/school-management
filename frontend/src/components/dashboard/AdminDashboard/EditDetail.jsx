@@ -149,10 +149,10 @@ function EditDetail() {
       <div>
         <form
           action=""
-          className="flex flex-wrap justify-center items-start "
+          className="flex flex-col md:flex-row flex-wrap justify-center items-start "
           onSubmit={handleSave}
         >
-          <div className=" flex-1 sticky top-12 md:mt-10 text-center">
+          <div className="p-2 mx-auto flex-1 sticky top-12 md:mt-10 text-center">
             <div className="w-fit mx-auto max-w-xs border-4 border-red-700 rounded-full">
               <input
                 type="file"
@@ -176,14 +176,14 @@ function EditDetail() {
                       : UserImg
                   }
                   alt="preview"
-                  className="rounded-full border-2 border-white object-cover w-fit h-fit bg-slate-400"
+                  className="rounded-full border-2 border-white object-cover w-32 h-32 md:w-fit md:h-fit bg-slate-400"
                 />
                 <MdOutlineAddCircle className="text-black absolute bottom-1 right-1 text-2xl" />
               </label>
             </div>
             <p className="mt-5">file - {avatar?.name}</p>
           </div>
-          <div className=" border flex-1 text-gray-900 p-5 flex flex-col gap-5">
+          <div className="w-full border flex-1 text-gray-900 p-5 flex flex-col gap-5">
             {error && (
               <div>
                 <p>{error}</p>

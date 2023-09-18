@@ -13,7 +13,6 @@
     padding: 1rem auto;
 }
 .modal{
-    min-width: 400px;
     width: fit-content;
     max-width: 600px;
     background: #fff;

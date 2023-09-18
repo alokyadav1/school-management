@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../../../context/UserContext";
 
 import Header from "./Header";
 import GuideStep from "./GuideStep";
 import SecurityCard from "./SecurityCard";
 import FeatureCard from "./FeatureCard";
 function Home() {
+  const {currentUser} = useContext(UserContext);
   const guide = [
     {
       stepNumber: "1",
@@ -76,6 +78,7 @@ function Home() {
 
   const security = [
     {
+      
       title: "Data Security",
       description:
         "We prioritize the security of your data with robust encryption and access controls. Your data is stored in secure, redundant data centers with regular backups to prevent data loss.",
@@ -94,7 +97,7 @@ function Home() {
   return (
     <>
      <div>
-  <Header />
+  <Header currentUser={currentUser} />
   {/* Main Section with Gradient Background and Modern Design */}
   <section
     className={`flex-grow bg-gradient-to-br from-purple-700 via-pink-600 to-red-500 text-white py-16 relative`}
@@ -110,7 +113,7 @@ function Home() {
         to="/login"
         className="mt-8 inline-block bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105"
       >
-        Get Started
+        {currentUser.user ? "Dashboard" : "Get Started"}
       </Link>
     </div>
   </section>

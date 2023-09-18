@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import UserImg from "../../../assets/images/user.png";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { BiSolidReport } from "react-icons/bi";
+import { LuMoreVertical } from "react-icons/lu";
 import axios from "../../../Axios/axios.js";
 import CustomModal from "../../Modal/CustomModal";
 import AdminContext from "../../../context/AdminContext";
@@ -21,11 +22,11 @@ function ProfileCard({ role, data }) {
 
   const handleAction = () => {
     setShowAction(!showAction);
-  }
+  };
   return (
     <>
       <ToastContainer />
-      <div className="bg-gray-100 px-2 md:px-5 py-2 rounded-xl flex flex-row justify-between items-center w-full relative ">
+      <div className="bg-gray-100 px-2 md:px-5 py-2 rounded-xl flex flex-row justify-between items-center w-full relative " >
         <div
           onClick={(e) => viewDetail(data)}
           className="cursor-pointer flex flex-wrap flex-row gap-2 justify-start items-center flex-1"
@@ -52,12 +53,17 @@ function ProfileCard({ role, data }) {
         <div className="hidden md:block">
           <UserAction data={data} role={role} />
         </div>
-        <div className=" md:hidden absolute right-2 top-0 px-2">
-          <span className="font-bold" onClick={handleAction}>...</span>
+        <div className=" md:hidden absolute right-2 top-2 px-2">
+          <span className="font-bold" onClick={handleAction}>
+            {" "}
+            <LuMoreVertical />{" "}
+          </span>
           {/* <UserAction data={data} role={role} /> */}
-          {showAction && <div className="absolute right-0 bg-white p-2 rounded-md shadow-lg z-30">
-            <UserAction data={data} role={role} />
-          </div>}
+          {showAction && (
+            <div className="absolute right-0 bg-white p-2 rounded-md shadow-lg z-30">
+              <UserAction data={data} role={role} />
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import UserContext from "../../../context/UserContext.js";
 import AdminContext from "../../../context/AdminContext.js";
 import { BsPersonFillAdd } from "react-icons/bs";
 import { FaFilter } from "react-icons/fa6";
+import {LuMoreVertical} from "react-icons/lu";
 import UserImg from "../../../assets/images/user.png";
 import CustomModal from "../../Modal/CustomModal.jsx";
 import Pagination from "../../Pagination/Pagination.jsx";
@@ -145,11 +146,12 @@ function StudentData() {
     temp[index] = e.target.checked;
     setFilter(temp);
   };
-  const toggleFilter = () => {
+  const toggleFilter = (e) => {
+    e.stopPropagation();
     setShowFilter(!showFilter);
   };
 
-  const handleFilter = () => {
+  const handleFilter = (e) => {
     setShowFilter(false);
     const temp = department.filter((item, index) => {
       if (filter[index]) {
@@ -159,13 +161,20 @@ function StudentData() {
     setSelectedDepartment(temp);
   };
 
-  const handleShowAction = () => {
+  const handleShowAction = (e) => {
+    e.stopPropagation();
     setShowAction(!showAction);
   };
+
+  const handleHideAction = () => {
+    setShowAction(false);
+    setShowFilter(false);
+  }
+
   return (
     <>
       <ToastContainer />
-      <div className="relative z-10">
+      <div className="relative z-10 min-h-screen" onClick={handleHideAction}>
         <header className="p-2 flex flex-wrap lg:flex-row items-center justify-between sticky top-0 bg-white">
           <h1 className="text-2xl font-bold text-center lg:text-left  mx-auto">
             Student Data
@@ -182,10 +191,10 @@ function StudentData() {
           </div>
           <div className="z-50">
             <span
-              className="font-bold relative md:hidden"
+              className="font-bold relative md:hidden pt-2"
               onClick={handleShowAction}
             >
-              ...
+              <LuMoreVertical className="font-bold text-xl" />
             </span>
             <div
               className={
@@ -224,7 +233,7 @@ function StudentData() {
             <FaFilter className="text-blue-700 text-xl -z-10" />
           </div>
           {showFilter && (
-            <div className="p-2 bg-white rounded-md shadow-2xl absolute top-full right-0 border-gray-500 border z-20">
+            <div className="p-2 bg-white rounded-md shadow-2xl absolute top-full right-0 border-gray-500 border z-20" onClick={(e) => e.stopPropagation()}>
               <div>
                 <h1 className="text-lg font-bold">Standard</h1>
               </div>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 import axios from "../../../Axios/axios.js";
 import "../../../assets/styles/signup.css";
+import { Oval } from "react-loader-spinner";
 function Login() {
   const navigate = useNavigate();
   const { dispatchUser } = useContext(UserContext);
@@ -155,10 +156,20 @@ function Login() {
         <div className="md:w-4/5 mx-auto">
           <button
             type="submit"
-            className="w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
+            className="flex gap-5 justify-center items-center w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
             disabled={loading}
           >
-            Sign In
+            <span>Sign In</span>
+            {loading && (
+              <Oval
+                width={20}
+                height={20}
+                strokeWidth={10}
+                strokeWidthSecondary={10}
+                color="white"
+                secondaryColor="blue"
+              />
+            )}
           </button>
         </div>
       </form>

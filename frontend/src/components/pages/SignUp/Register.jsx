@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../../context/UserContext";
 import axios from "../../../Axios/axios.js";
 import "../../../assets/styles/signup.css";
+import { Oval } from "react-loader-spinner";
 function Register() {
   const navigate = useNavigate();
   const { dispatchUser } = useContext(UserContext);
@@ -144,7 +145,17 @@ function Register() {
             className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
             disabled={loading}
           >
-            Register
+            <span>Register</span>
+            {loading && (
+              <Oval
+                width={20}
+                height={20}
+                strokeWidth={10}
+                strokeWidthSecondary={10}
+                color="white"
+                secondaryColor="blue"
+              />
+            )}
           </button>
         </div>
       </form>
